@@ -2,6 +2,7 @@ package com.shan_infosystem.special_specialized_care.controller.hospital;
 
 import com.shan_infosystem.special_specialized_care.entity.hospital.HospitalService;
 import com.shan_infosystem.special_specialized_care.entity.model.HospitalModel;
+import com.shan_infosystem.special_specialized_care.exception.exception.Entity_Found_Exception;
 import org.apache.catalina.connector.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
