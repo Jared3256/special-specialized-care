@@ -20,7 +20,7 @@ public class HospitalPOSTControlller
     @Autowired
     private HospitalService hospitalService;
 
-    public ResponseEntity<String> createHospital(@RequestBody HospitalModel hospitalModel)
+    public ResponseEntity<String> createHospital(@RequestBody HospitalModel hospitalModel) throws Entity_Found_Exception
     {
         logger.info( "Adding Hospital ", hospitalModel);
         return hospitalService.createHospital(hospitalModel);

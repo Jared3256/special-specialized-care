@@ -57,11 +57,6 @@ public class HospitalServiceImpl implements HospitalService
     @Override
     public ResponseEntity<String> createHospital(HospitalModel hospitalModel) throws Entity_Found_Exception
     {
-        /**
-         * TODO : 1. Check if the hospital with the name and code given exists
-         *        2. if exists then throw an error otherwise save and return response
-         */
-
         Optional<Hospital> hospitalOpt =hospitalRepository.findByNameAndLocation(hospitalModel.getName(), hospitalModel.getLocation());
 
         if (!hospitalOpt.isEmpty())
