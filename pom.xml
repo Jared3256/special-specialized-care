@@ -46,7 +46,6 @@
 			</plugin>
 		</plugins>
 		<finalName>primary-health-care-1</finalName>
-
 	</build>
 
 </project>
