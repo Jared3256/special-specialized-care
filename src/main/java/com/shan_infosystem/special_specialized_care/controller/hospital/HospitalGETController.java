@@ -8,12 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/hsp/g")
+@RestController
+@RequestMapping("/sphcs/hospital/g")
 public class HospitalGETController
 {
     private static final Logger logger = LoggerFactory.getLogger(HospitalGETController.class);
@@ -21,18 +23,19 @@ public class HospitalGETController
     @Autowired
     private HospitalService hospitalService;
 
-    @GetMapping(path = "/find?all=true")
+    @GetMapping("/find_all")
     public List<Hospital> findAllHospitals() throws Entity_Not_Found_Exception
     {
         logger.info("[ Finding all Hospitals ]");
         return hospitalService.findAllHospitals();
     }
 
-    @GetMapping(path = "/find?all={}&id={}")
-    public ResponseEntity<Hospital> findHopsitalById(@RequestParam (name = "all") String all,
-                                                     @RequestParam(name = "id") long id) throws Entity_Not_Found_Exception
+    @GetMapping("/find")
+    public ResponseEntity<Hospital> findHopsitalById(@RequestParam(name = "id") long id) throws Entity_Not_Found_Exception
     {
         logger.info("[ Finding Hospital for Id {}]", id);
         return hospitalService.findHospitalById(id);
     }
+
+
 }

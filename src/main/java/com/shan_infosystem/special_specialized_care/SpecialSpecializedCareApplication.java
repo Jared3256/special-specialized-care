@@ -5,11 +5,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-@EnableJpaAuditing
-public class SpecialSpecializedCareApplication {
+@EnableJpaAuditing(
+        setDates = true,
+        auditorAwareRef = "AuditorAwareImpl"
+)
+public class SpecialSpecializedCareApplication
+{
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpecialSpecializedCareApplication.class, args);
-	}
+    public static void main(String[] args)
+    {
+        SpringApplication.run(SpecialSpecializedCareApplication.class, args);
+    }
 
 }

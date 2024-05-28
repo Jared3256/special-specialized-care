@@ -8,12 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/hospital/o")
+@RequestMapping("/sphcs/hospital/o")
 public class HospitalPOSTControlller
 {
     private static final Logger logger = LoggerFactory.getLogger(HospitalPOSTControlller.class);
@@ -21,9 +22,10 @@ public class HospitalPOSTControlller
     @Autowired
     private HospitalService hospitalService;
 
+    @PostMapping("/create")
     public ResponseEntity<String> createHospital(@RequestBody HospitalModel hospitalModel) throws Entity_Found_Exception
     {
-        logger.info( "Adding Hospital ", hospitalModel);
+        logger.info("Adding Hospital ", hospitalModel);
         return hospitalService.createHospital(hospitalModel);
     }
 }

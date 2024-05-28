@@ -4,6 +4,7 @@ import com.shan_infosystem.special_specialized_care.entity.model.HospitalModel;
 import com.shan_infosystem.special_specialized_care.entity.model.Mapper;
 import com.shan_infosystem.special_specialized_care.exception.exception.Entity_Found_Exception;
 import com.shan_infosystem.special_specialized_care.exception.exception.Entity_Not_Found_Exception;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class HospitalServiceImpl implements HospitalService
 {
     @Autowired
@@ -68,5 +70,67 @@ public class HospitalServiceImpl implements HospitalService
         hospitalRepository.save(hospital);
         return ResponseEntity.ok("Hospital Created Successfuly");
 
+    }
+
+    /**
+     * @param id
+     * @param hospitalModel
+     * @return
+     */
+    @Override
+    public ResponseEntity<String> updateHospital(long id, HospitalModel hospitalModel) throws Entity_Not_Found_Exception
+    {
+        int count =0;
+       Optional<Hospital> optionalHospital = hospitalRepository.findById(id);
+
+       if(optionalHospital.isEmpty())
+       {
+           throw new Entity_Not_Found_Exception("[ Hospital with the provided Id is not found ]");
+       }
+
+       if(!optionalHospital.get().getCode().equals(hospitalModel.getCode()) && !hospitalModel.getCode().isBlank())
+       {
+           optionalHospital.get().setCode(hospitalModel.getCode());
+           count++;
+       }
+
+       if(optionalHospital.get().getBedCapacity() != hospitalModel.getBedCapacity() && hospitalModel.getBedCapacity() >0)
+       {
+           optionalHospital.get().setBedCapacity(hospitalModel.getBedCapacity());
+           count++;
+       }
+
+       if(!optionalHospital.get().getName().equals(hospitalModel.getName()) && !hospitalModel.getName().isBlank())
+       {
+           optionalHospital.get().setName(hospitalModel.getName());
+           count++;
+       }
+
+       if(count > 1)
+       {
+           return ResponseEntity.ok("Hospital Updated Successfully");
+       }
+       return ResponseEntity.ok("Hospital Data still up-to-date");
+
+
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public ResponseEntity<String> deleteHospital(long id) throws Entity_Not_Found_Exception
+    {
+       Optional<Hospital> optionalHospital = hospitalRepository.findById(id);
+
+        if(optionalHospital.isEmpty())
+        {
+            throw new Entity_Not_Found_Exception("[ Hospital with the provided Id is not found ]");
+        }
+
+        hospitalRepository.delete(optionalHospital.get());
+
+        return ResponseEntity.ok("Hospital Deleted Successfully");
     }
 }

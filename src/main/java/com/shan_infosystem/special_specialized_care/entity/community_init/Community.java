@@ -1,11 +1,16 @@
-package com.shan_infosystem.special_specialized_care.entity.hospital;
+package com.shan_infosystem.special_specialized_care.entity.community_init;
 
+import com.shan_infosystem.special_specialized_care.entity.hospital.Hospital;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import org.springframework.data.annotation.CreatedBy;
@@ -16,48 +21,60 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 
+@Table
 @Entity
-@Table(name = "SHAN_Hospital")
 @EntityListeners(AuditingEntityListener.class)
-public class Hospital
+public class Community
 {
     @Id
-    @SequenceGenerator(name = "hospital_sequence", sequenceName = "hospital_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hospital_sequence")
+    @SequenceGenerator(name = "commuinity_sequence", sequenceName = "commuinity_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commuinity_sequence")
     private long id;
+
+    @Column
+    private long registraId;
 
     @Column
     private String name;
 
     @Column
-    private String code;
+    private String subCounty;
 
     @Column
-    private String location;
+    private long population;
 
-    @Column
-    private long bedCapacity;
+    @ManyToOne(
+            optional = false,
+            targetEntity = Hospital.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(referencedColumnName = "id")
+    private Hospital hospital;
 
-    //    Auditing features
+    /**
+     * Audit Metrics
+     */
+
     @CreatedBy
-    @Column(name = "created_by", updatable = false)
+    @Column(name = "created_by")
     private String createdBy;
 
     @CreatedDate
-    @Column(name = "created_date", updatable = false)
+    @Column(name = "created_date")
     private Date createdAt;
 
     @LastModifiedDate
-    @Column(name = "last_modified", insertable = false)
+    @Column(name = "last_modified")
     private Date lastModified;
 
     @LastModifiedBy
-    @Column(name = "last_modified_by", insertable = false)
+    @Column(name = "last_modified_by")
     private String lastModifiedBy;
 
-
-//    Getter and Setters
-
+    /**
+     * Getter and Setter Methods
+     */
 
     public long getId()
     {
@@ -67,6 +84,16 @@ public class Hospital
     public void setId(long id)
     {
         this.id = id;
+    }
+
+    public long getRegistraId()
+    {
+        return registraId;
+    }
+
+    public void setRegistraId(long registraId)
+    {
+        this.registraId = registraId;
     }
 
     public String getName()
@@ -79,34 +106,24 @@ public class Hospital
         this.name = name;
     }
 
-    public String getCode()
+    public String getSubCounty()
     {
-        return code;
+        return subCounty;
     }
 
-    public void setCode(String code)
+    public void setSubCounty(String subCounty)
     {
-        this.code = code;
+        this.subCounty = subCounty;
     }
 
-    public String getLocation()
+    public long getPopulation()
     {
-        return location;
+        return population;
     }
 
-    public void setLocation(String location)
+    public void setPopulation(long population)
     {
-        this.location = location;
-    }
-
-    public long getBedCapacity()
-    {
-        return bedCapacity;
-    }
-
-    public void setBedCapacity(long bedCapacity)
-    {
-        this.bedCapacity = bedCapacity;
+        this.population = population;
     }
 
     public String getCreatedBy()
@@ -147,5 +164,15 @@ public class Hospital
     public void setLastModifiedBy(String lastModifiedBy)
     {
         this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Hospital getHospital()
+    {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital)
+    {
+        this.hospital = hospital;
     }
 }

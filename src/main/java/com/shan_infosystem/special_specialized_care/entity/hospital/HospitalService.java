@@ -14,4 +14,8 @@ public interface HospitalService
     ResponseEntity<Hospital> findHospitalById(long id) throws Entity_Not_Found_Exception;
 
     ResponseEntity<String> createHospital(HospitalModel hospitalModel) throws Entity_Found_Exception;
+
+    ResponseEntity<String> updateHospital(long id, HospitalModel hospitalModel) throws Entity_Not_Found_Exception;
+
+    ResponseEntity<String> deleteHospital(long id) throws Entity_Not_Found_Exception;
 }
