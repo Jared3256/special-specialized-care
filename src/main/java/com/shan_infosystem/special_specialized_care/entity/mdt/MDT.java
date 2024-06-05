@@ -11,7 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import org.springframework.data.annotation.CreatedBy;
@@ -38,7 +38,7 @@ public class MDT
     @Column
     private Proffession proffession;
 
-    @OneToMany(
+    @OneToOne(
             targetEntity = Hospital.class,
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
@@ -64,4 +64,84 @@ public class MDT
     @LastModifiedBy
     @Column(name = "last_modified_by", insertable = false)
     private String lastModifiedBy;
+
+    public long getId()
+    {
+        return id;
+    }
+
+    public void setId(long id)
+    {
+        this.id = id;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public Proffession getProffession()
+    {
+        return proffession;
+    }
+
+    public void setProffession(Proffession proffession)
+    {
+        this.proffession = proffession;
+    }
+
+    public Hospital getHospital()
+    {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital)
+    {
+        this.hospital = hospital;
+    }
+
+    public String getCreatedBy()
+    {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy)
+    {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedAt()
+    {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt)
+    {
+        this.createdAt = createdAt;
+    }
+
+    public Date getLastModified()
+    {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified)
+    {
+        this.lastModified = lastModified;
+    }
+
+    public String getLastModifiedBy()
+    {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy)
+    {
+        this.lastModifiedBy = lastModifiedBy;
+    }
 }
