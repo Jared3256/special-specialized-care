@@ -30,7 +30,7 @@ public class FamilyController
     @PostMapping("/register")
     public ResponseEntity<String> registerFamilyUnit(@RequestBody Family family)
     {
-        logger.info("Adding new Family unit", family.toString());
+        logger.info("Adding new Family unit {}", family.toString());
         return familyService.registerFamilyUnit(family);
     }
 

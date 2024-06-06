@@ -29,7 +29,7 @@ public class Community
     @Id
     @SequenceGenerator(name = "commuinity_sequence", sequenceName = "commuinity_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commuinity_sequence")
-    private long id;
+    private Long id;
 
     @Column
     private long registraId;

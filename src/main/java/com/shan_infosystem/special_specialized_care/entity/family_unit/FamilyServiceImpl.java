@@ -37,7 +37,7 @@ public class FamilyServiceImpl implements FamilyService
             throw new Entity_Not_Found_Exception("Cannot delete Family Unit with Id " + id);
 
         familyRepository.deleteById(id);
-        
+
         return ResponseEntity.ok("Family Unit deleted successfully");
     }
 

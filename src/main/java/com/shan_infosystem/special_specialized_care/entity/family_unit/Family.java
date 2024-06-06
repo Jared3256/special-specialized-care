@@ -1,16 +1,14 @@
 package com.shan_infosystem.special_specialized_care.entity.family_unit;
 
 import com.shan_infosystem.special_specialized_care.entity.community_init.Community;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -25,7 +23,7 @@ import java.util.Date;
 @Table(
         uniqueConstraints = @UniqueConstraint(
                 name = "FamilyUnitUnique",
-                columnNames = {"id", "community"}))
+                columnNames = {"id"}))
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Family
@@ -35,13 +33,10 @@ public class Family
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fu_sequence")
     private Long id;
     @OneToOne(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
             targetEntity = Community.class
     )
-
-    @JoinColumn(name = "community")
-    private long community;
+    @PrimaryKeyJoinColumn(name = "community")
+    private int community;
 
 
     /**
@@ -64,6 +59,11 @@ public class Family
     @Column(name = "last_modified_by")
     private String lastModifiedBy;
 
+    public Family(int community)
+    {
+        this.community = community;
+    }
+
     public Long getId()
     {
         return id;
@@ -79,7 +79,7 @@ public class Family
         return community;
     }
 
-    public void setCommunity(long community)
+    public void setCommunity(int community)
     {
         this.community = community;
     }
