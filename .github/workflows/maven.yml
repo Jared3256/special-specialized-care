@@ -41,7 +41,5 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Docker Scout Scan
       uses: docker/scout-action@v1.9.3
-      run: |
-        docker scout quikview
-        docker scoutcves
+    
 
