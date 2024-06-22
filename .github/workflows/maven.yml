@@ -33,6 +33,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
+      run: mvn clean install
     
   build-image:
     needs: compile 
@@ -46,31 +47,33 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
+      run: mvn clean install
     
-  # deploy-to-aws:
-  #   needs: build-image 
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v4
-  #   - name: Set up JDK 22
-  #     uses: actions/setup-java@v3
-  #     with:
-  #       java-version: '22'
-  #       distribution: 'temurin'
-  #       cache: maven
-  #   - name: Build with Maven
+  deploy-to-aws:
+    needs: build-image 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: mvn clean install
     
-  # deploy-to-safaricom-cloud:
-  #   needs: build-image 
-  #   runs-on: ubuntu-latest
-  #   steps:
-    # - uses: actions/checkout@v4
-    # - name: Set up JDK 22
-    #   uses: actions/setup-java@v3
-    #   with:
-    #     java-version: '22'
-    #     distribution: 'temurin'
-    #     cache: maven
+  deploy-to-safaricom-cloud:
+    needs: build-image 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
     - name: Build with Maven
       run: mvn clean install
 
