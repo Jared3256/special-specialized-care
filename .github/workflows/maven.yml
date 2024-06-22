@@ -28,8 +28,47 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
       
-  build:
+  compile:
     needs: qodana 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+    
+  build-image:
+    needs: compile 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+    
+  deploy-to-aws:
+    needs: build-image 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+    
+  deploy-to-safaricom-cloud:
+    needs: build-image 
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
