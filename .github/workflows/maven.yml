@@ -14,13 +14,14 @@ jobs:
       contents: write
       pull-requests: write
       checks: write
-      pr-mode: false
-      args: --apply-fixes
-      push-fixes: pull-request
+     
       
     steps:
     - uses: actions/checkout@v4
       with:
+        pr-mode: false
+        args: --apply-fixes
+        push-fixes: pull-request
         fetch-depth: 0
         ref: ${{ github.event.pull_request.head.sha }} 
         
