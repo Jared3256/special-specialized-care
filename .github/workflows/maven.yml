@@ -10,10 +10,19 @@ on:
 jobs:
   qodana:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+      pr-mode: false
+      args: --apply-fixes
+      push-fixes: pull-request
+      
     steps:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        ref: ${{ github.event.pull_request.head.sha }} 
         
     - name: Qodana scan
       uses: JetBrains/qodana-action@v2024.1.3
