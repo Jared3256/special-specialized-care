@@ -1,0 +1,26 @@
+version: "1.0"
+linter: jetbrains/qodana-jvm:2024.1
+exclude:
+  - name: All
+    paths:
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/community/CommunityPOSTController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/hospital/HospitalPOSTControlller.java
+      - src/main/resources/application.properties
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/community/CommunityPUTController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/hospital/HospitalGETController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/entity/community_init/CommunityServiceImpl.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/entity/family_unit/FamilyServiceImpl.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/lab/LabGetController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/entity/lab/diagnosis/DiagnosisServiceImpl.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/entity/mdt/MDTServiceImpl.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/community/CommunityDELETEController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/hospital/HospitalPUTController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/entity/hospital/HospitalServiceImpl.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/lab/LabPostController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/mdt/MDTController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/family/FamilyController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/hospital/HospitalDELETEController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/patient/PatientController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/entity/patient/PatientServiceImpl.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/controller/community/CommunityGETController.java
+      - src/main/java/com/shan_infosystem/special_specialized_care/exception/handler/RestExceptionHandler.java
