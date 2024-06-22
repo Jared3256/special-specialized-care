@@ -16,7 +16,7 @@ on:
 
 jobs:
   qodana:
-    runs-ons: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 22
@@ -27,6 +27,7 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean install
+      
   build:
     needs: qodana 
     runs-on: ubuntu-latest
