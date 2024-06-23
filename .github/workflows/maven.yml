@@ -1,5 +1,5 @@
 
-name: Java CI with Maven
+name: specialized-special-care-ci-cd
 
 on:
   push:
