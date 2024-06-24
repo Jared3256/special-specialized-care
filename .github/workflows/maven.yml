@@ -1,9 +1,8 @@
 name: Compile and Trigger Qodana Scan
 
-
 on:
   push:
-    branches: [ develop ]
+    branches: [ Develop ]
 
 
 jobs:
