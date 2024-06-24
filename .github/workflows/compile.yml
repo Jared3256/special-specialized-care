@@ -1,0 +1,20 @@
+name: Compile and Trigger Qodana Scan
+
+on:
+  push:
+    branches: [ develop ]
+
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Compile code
+        run: mvn clean install
+
+      - name: Trigger Qodana Scan
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.QODANA_TOKEN }}
+          event-type: trigger-qodana-scan
