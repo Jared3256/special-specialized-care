@@ -3,7 +3,7 @@ name: Compile and Trigger Qodana Scan
 on:
   push:
     branches: [ Develop ]
-
+    
 jobs:
   compile:
     runs-on: ubuntu-latest
