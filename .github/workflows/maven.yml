@@ -20,6 +20,7 @@ jobs:
         run: mvn clean install
 
   qodana:
+    needs: compile
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
