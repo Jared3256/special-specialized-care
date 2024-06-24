@@ -19,13 +19,19 @@ jobs:
       - name: Compile code
         run: mvn clean install
 
-  qodana:
-    needs: compile
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
       - name: Trigger Qodana Scan
         uses: peter-evans/repository-dispatch@v3
         with:
           #          token: ${{ secrets.QODANA_TOKEN }}
           event-type: trigger-qodana-scan
+
+#  qodana:
+#    needs: compile
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Trigger Qodana Scan
+#        uses: peter-evans/repository-dispatch@v3
+#        with:
+#          #          token: ${{ secrets.QODANA_TOKEN }}
+#          event-type: trigger-qodana-scan
