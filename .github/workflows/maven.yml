@@ -22,7 +22,7 @@ jobs:
       - name: Trigger Qodana Scan
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.QODANA_TOKEN }}
+          token: ${{ secrets.PAT }}
           event-type: trigger-qodana-scan
 
 #  qodana:
