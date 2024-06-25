@@ -5,3 +5,5 @@ include:
   - name: DefaultAnnotationParam
   - name: JavadocDeclaration
   - name: NullableProblems
+  - name: DanglingJavadoc
+  - name: SimplifyOptionalCallChains
