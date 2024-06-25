@@ -30,15 +30,21 @@ jobs:
 
       - name: Run tests
         run: mvn test
-
-      - name: Create Pull Request to qodana-scan
-        if: success()
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.PAT }}
-          branch: Qodana-scan
-          title: 'Merge develop into qodana-scan'
-          body: 'This PR is automatically created by GitHub Actions to merge develop into qodana-scan.'
+  puller:
+    needs: compile
+    runs-on: ubuntu-latest
+    
+    steps:
+      
+        - uses: actions/checkout@v4
+        - name: Create Pull Request to qodana-scan
+          if: success()
+          uses: peter-evans/create-pull-request@v3
+          with:
+            token: ${{ secrets.PAT }}
+            branch: Qodana-scan
+            title: 'Merge develop into qodana-scan'
+            body: 'This PR is automatically created by GitHub Actions to merge develop into qodana-scan.'
 
       # - name: Trigger Qodana Scan
       #   uses: peter-evans/repository-dispatch@v3
