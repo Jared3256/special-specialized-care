@@ -1,6 +1,8 @@
 name: Qodana Scan
 
 on:
+  push:
+    branches: [Qodana-scan]
   pull_request:
     branches: [Qodana-scan]
 
