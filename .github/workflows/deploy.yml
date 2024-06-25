@@ -39,5 +39,5 @@ jobs:
           hostname: https://host16.safaricombusiness.co.ke
           cpanel_token: DQN6U7S7K1IMNIETGDUNGOQRQ9BMOEJ7
           cpanel_username: eutronco
-          repository_root: test
+          repository_root: special
           branch: master
