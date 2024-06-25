@@ -2,7 +2,9 @@ name: Compile and Trigger Qodana Scan
 
 on:
   push:
-    branches: [ Develop ]
+    branches: [Develop]
+  pull_request:
+    branches: [Develop]
 
 jobs:
   compile:
@@ -15,15 +17,34 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
           cache: maven
+          
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
 
       - name: Compile code
         run: mvn clean install
 
-      - name: Trigger Qodana Scan
-        uses: peter-evans/repository-dispatch@v3
+      - name: Run tests
+        run: mvn test
+
+      - name: Create Pull Request to qodana-scan
+        if: success()
+        uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.PAT }}
-          event-type: trigger-qodana-scan
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: qodana-scan
+          title: 'Merge develop into qodana-scan'
+          body: 'This PR is automatically created by GitHub Actions to merge develop into qodana-scan.'
+
+      # - name: Trigger Qodana Scan
+      #   uses: peter-evans/repository-dispatch@v3
+      #   with:
+      #     token: ${{ secrets.PAT }}
+      #     event-type: trigger-qodana-scan
 
 #  qodana:
 #    needs: compile
