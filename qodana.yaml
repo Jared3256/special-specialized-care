@@ -1,5 +1,6 @@
 version: "1.0"
 linter: jetbrains/qodana-jvm:2024.1
+fixesStrategy: cleanup/apply
 include:
   - name: DefaultAnnotationParam
   - name: JavadocDeclaration
