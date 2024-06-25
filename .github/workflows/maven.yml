@@ -35,7 +35,7 @@ jobs:
         if: success()
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
           branch: qodana-scan
           title: 'Merge develop into qodana-scan'
           body: 'This PR is automatically created by GitHub Actions to merge develop into qodana-scan.'
