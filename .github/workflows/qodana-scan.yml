@@ -28,6 +28,7 @@ jobs:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN}}
           
   master-merge:
+    needs: qodana
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
