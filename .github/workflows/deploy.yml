@@ -33,11 +33,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: cPanel Deploy Action
-        uses: pinkasey/cpanel-deploy-action@v1.2.0
-        with:
-          hostname: https://host16.safaricombusiness.co.ke
-          cpanel_token: DQN6U7S7K1IMNIETGDUNGOQRQ9BMOEJ7
-          cpanel_username: eutronco
-          repository_root: special
-          branch: master
